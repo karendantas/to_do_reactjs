@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ButtonCheckProps {
+    check: boolean;
+}
+
+export const Container = styled.div<ButtonCheckProps>`
     height: 4.5rem;
     padding: 1rem ;
     background-color: var(--gray-500);
@@ -34,8 +38,7 @@ export const Container = styled.div`
     }
 `;
 
-
-export const CircleInput = styled.span`
+export const CircleInput = styled.span<ButtonCheckProps>`
     cursor: pointer;
     border-radius: 100%;
     height: 1.125rem;
@@ -47,7 +50,7 @@ export const CircleInput = styled.span`
     
 `
 
-export const Checked = styled.div`
+export const Checked = styled.div<ButtonCheckProps>`
     width: 100%;
     height: 100%;
     border-radius: 100% ;
