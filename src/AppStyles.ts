@@ -23,14 +23,13 @@ export const TaskInputContainer = styled.div`
 
     display: flex;
     justify-content: space-between;
-    flex: 1;
-   
+    gap: 0.5rem;
     transform: translateY(-50%);
 
 `
 
 export const Input = styled.input`
-    width: 39.875rem;
+    flex:1;
     background-color: var(--gray-500);
     
     padding: 1rem;
@@ -42,8 +41,8 @@ export const Input = styled.input`
     color: var(--gray-100);
 `
 export const Button = styled.button`
-    width: 5.625rem;
-    background-color: var(--blue);
+    font-size: 14px;
+    background-color: var(--blue-dark);
 
     border:none;
     outline: none;
@@ -52,8 +51,60 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 18px;
     gap: 0.5rem;
 
     color: var(--gray-100);
     font-weight: bold;
+`;
+
+export const TaskContainer = styled.div`
+    margin-top: 5.6875rem;
+    
+    display: flex;
+    flex-direction: column;
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+    }
+`
+export const TaskInfos =  styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    strong{
+        color: var(--blue);
+    }
+    
+    span{
+        font-size: 12px;
+        font-family: bold;
+        background-color: var(--gray-400);
+        padding: 2px 8px;
+        border-radius: 999px;
+        align-items: center;
+    }
+`
+
+export const TasksList = styled.div`
+
+        margin-top: 1.5rem;
+        border-top: 2px solid var(--gray-400);
+
+    
+`;
+export const EmptyContent =  styled.div`
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span { color: var(--gray-300)}
+    strong{
+        color: var(--gray-300);
+        margin-top: 1rem;
+    }
 `;
