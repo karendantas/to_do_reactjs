@@ -89,9 +89,10 @@ export const TaskInfos =  styled.div`
 `
 
 export const TasksList = styled.div`
-
         margin-top: 1.5rem;
         border-top: 2px solid var(--gray-400);
+        display: flex;
+        flex-direction: column;
 
     
 `;

@@ -1,6 +1,8 @@
 import { Header, Container,TaskInputContainer,Input,Button, TaskContainer,TaskInfos, TasksList, EmptyContent } from './AppStyles';
 import { PlusCircle } from '@phosphor-icons/react';
 
+import { Task } from './components/Task/Task';
+
 function App() {
   return (
     <>
@@ -34,6 +36,9 @@ function App() {
                         <strong>Você ainda não tem tarefas cadastradas</strong>
                         <span>Crie tarefas e organize seus itens a fazer</span>
                     </EmptyContent>
+
+                      <Task/>
+
               </TasksList>
 
           </TaskContainer>
