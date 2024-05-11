@@ -5,13 +5,13 @@ import { Task } from './components/Task/Task';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 function App() {
-  const [tasks, setTasks] = useState(['OI', 'ias']);
-  const [tasksCount, setTasksCount] = useState(2);
+  const [tasks, setTasks] = useState(['Oi, eu sou uma task!']);
+  const [tasksCount, setTasksCount] = useState(tasks.length);
   const [finishedTasks, setFinishedTasks] = useState(0);
   const [newTaskText, setNewTaskText] =  useState('');
 
   const isListTaskEmpty = tasks.length === 0;
-
+  const isNewTaskTextInputEmpty = newTaskText.length === 0;
 
   function handleGetNewTaskText(event: ChangeEvent<HTMLInputElement>){
     setNewTaskText(event.target.value);
@@ -21,8 +21,8 @@ function App() {
 
       const newTask = newTaskText;
       setTasks([...tasks, newTask]);
+      setTasksCount( (state) => {return state + 1});
       setNewTaskText('');
-    
   }
 
 
@@ -38,9 +38,9 @@ function App() {
                 <Input type="text" 
                       placeholder='Adicione uma nova tarefa' 
                       onChange={handleGetNewTaskText}  
-                      value = {newTaskText}    
+                      value = {newTaskText}   
                 />
-                <Button>Criar <PlusCircle size={20}/> </Button>
+                <Button disabled = {isNewTaskTextInputEmpty}>Criar <PlusCircle size={20}/> </Button>
             </TaskInputContainer>
           </form>
 

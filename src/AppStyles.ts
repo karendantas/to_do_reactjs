@@ -57,6 +57,13 @@ export const Button = styled.button`
 
     color: var(--gray-100);
     font-weight: bold;
+
+    &:hover{
+        cursor: pointer;
+    }
+    &:disabled{
+        cursor: not-allowed;
+    }
 `;
 
 export const TaskContainer = styled.div`
