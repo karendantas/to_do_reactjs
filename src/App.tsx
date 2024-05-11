@@ -3,6 +3,7 @@ import { PlusCircle } from '@phosphor-icons/react';
 
 import { Task } from './components/Task/Task';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import nextId from 'react-id-generator';
 
 function App() {
   const [tasks, setTasks] = useState(['Oi, eu sou uma task!']);
@@ -24,7 +25,12 @@ function App() {
       setTasksCount( (state) => {return state + 1});
       setNewTaskText('');
   }
-
+  function onDeleteTask (taskToDelete: string){
+    const tasksWhithoutDeletedOne = tasks.filter( (task) => {
+        return task !== taskToDelete;
+    })
+    setTasks(tasksWhithoutDeletedOne);
+  }
 
   return (
     <>
@@ -59,8 +65,6 @@ function App() {
               </div>
 
               <TasksList>
-                
-
                     {
                       isListTaskEmpty 
                       ?
@@ -72,7 +76,9 @@ function App() {
                       :
                       tasks.map ((task)=> {
                         return  <Task
+                                    key={nextId()}
                                     content={task}
+                                    onDelete={ () => onDeleteTask(task)}
                                 />
                       })
                     }

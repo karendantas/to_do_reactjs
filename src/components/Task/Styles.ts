@@ -30,6 +30,12 @@ export const Container = styled.div`
     label, input{
         display: none;
     }
+
+    button {
+        background-color: transparent;
+        border: none;
+        color: var(--gray-300);
+    }
 `;
 
 
