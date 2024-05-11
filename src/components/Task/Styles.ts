@@ -15,7 +15,8 @@ export const Container = styled.div`
     gap: 0.75rem;
 
     p{  
-        color: var(--gray-100);
+        color: ${ props => props.check === true ? 'var(--gray-300)': 'var(--gray-100)'};
+        text-decoration: ${ props => props.check === true ? 'line-through': 'none'};
         font-size: 0.875rem;
         text-align: start;
         flex:1;
@@ -42,7 +43,7 @@ export const CircleInput = styled.span`
 
     transition: 0.2s all;
 
-    border: 2px solid var(--blue);
+    border: 2px solid ${ props => props.check === true ? 'var(--pruple)' : 'var(--blue)'};
     
 `
 

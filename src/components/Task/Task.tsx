@@ -22,12 +22,12 @@ export function Task ({data, onDelete, onCheck}: Props){
 
 
     return (
-        <Container>
+        <Container check = {data.isChecked}>
             <input readOnly type="radio" name="" id="" />
-            <CircleInput onClick={handleFinishTask}>
+            <CircleInput check = {data.isChecked} onClick={handleFinishTask} >
                 <Checked check = {data.isChecked} > <Check size={10}/> </Checked>
             </CircleInput>
-            <p> {data.content} </p>
+            <p > {data.content} </p>
             <button onClick={handleRemoveTask} > <Trash size={20} /> </button>
            
         </Container>

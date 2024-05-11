@@ -51,9 +51,16 @@ function App() {
   function onCheckTask(taskToCheckId:string){
     const updateTask = tasks.filter( (task) =>{
       if ( task.id === taskToCheckId ){
-          task.isChecked = true;
+          if (task.isChecked === false) {
+            task.isChecked = true;
+            setFinishedTasks((state) => state + 1);
+          }else if (task.isChecked === true){
+            task.isChecked = false;
+            setFinishedTasks((state) => state - 1);
+          }
       }
       return task
+      
     })
     setTasks(updateTask);
    
