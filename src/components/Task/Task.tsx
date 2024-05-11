@@ -1,25 +1,33 @@
 
-import {Container,CircleInput} from './Styles';
-import { Trash } from '@phosphor-icons/react';
+import {Container,CircleInput,Checked} from './Styles';
+import { Trash, Check } from '@phosphor-icons/react';
+
+import { TaskProps } from '../../App';
 
 type Props = {
-    content: string;
+    data: TaskProps;
     onDelete: (task: string) => void;
+    onCheck: (task:string) => void;
 }
 
-export function Task ({content, onDelete}: Props){
+export function Task ({data, onDelete, onCheck}: Props){
+
 
     function handleRemoveTask(){
-        onDelete(content);
+        onDelete(data.id);
+    }
+    function handleFinishTask(){
+        onCheck(data.id);
     }
 
 
     return (
         <Container>
-            <label htmlFor='checkbox'/>
-            <input readOnly type="checkbox" name="" id="" />
-            <CircleInput> </CircleInput>
-            <p> {content} </p>
+            <input readOnly type="radio" name="" id="" />
+            <CircleInput onClick={handleFinishTask}>
+                <Checked check = {data.isChecked} > <Check size={10}/> </Checked>
+            </CircleInput>
+            <p> {data.content} </p>
             <button onClick={handleRemoveTask} > <Trash size={20} /> </button>
            
         </Container>

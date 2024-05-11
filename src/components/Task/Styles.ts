@@ -20,15 +20,10 @@ export const Container = styled.div`
         text-align: start;
         flex:1;
     }
-    label{
-        display: flex;
-        padding: 3px;
-        align-items: center;
-        gap: 0.75rem;
-    }
 
-    label, input{
-        display: none;
+   input{
+
+        display:none;
     }
 
     button {
@@ -40,8 +35,27 @@ export const Container = styled.div`
 
 
 export const CircleInput = styled.span`
-  border-radius: 100%;
-  height: 1.125rem;
-  width: 1.125rem;
-  border: 2px solid var(--blue-dark);
+    cursor: pointer;
+    border-radius: 100%;
+    height: 1.125rem;
+    width: 1.125rem;
+
+    transition: 0.2s all;
+
+    border: 2px solid var(--blue);
+    
+`
+
+export const Checked = styled.div`
+    width: 100%;
+    height: 100%;
+    border-radius: 100% ;
+
+    background-color: var(--purple);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    opacity: ${ props => (props.check === true ? 1 : 0)};
 `

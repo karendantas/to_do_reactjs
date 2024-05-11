@@ -5,31 +5,58 @@ import { Task } from './components/Task/Task';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import nextId from 'react-id-generator';
 
+
+export interface TaskProps {
+  id: string;
+  isChecked: boolean;
+  content: string;
+}
+
 function App() {
-  const [tasks, setTasks] = useState(['Oi, eu sou uma task!']);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [tasksCount, setTasksCount] = useState(tasks.length);
   const [finishedTasks, setFinishedTasks] = useState(0);
   const [newTaskText, setNewTaskText] =  useState('');
 
+
   const isListTaskEmpty = tasks.length === 0;
   const isNewTaskTextInputEmpty = newTaskText.length === 0;
 
+  //pegando texto do input e atualizando seu estado
   function handleGetNewTaskText(event: ChangeEvent<HTMLInputElement>){
     setNewTaskText(event.target.value);
   }
+  //criando uma nova task com o valor do estado do input
   function handleAddNewTask( event:FormEvent ){
       event.preventDefault();
 
-      const newTask = newTaskText;
+      const newTask = {
+                      id: nextId(),
+                      isChecked: false,
+                      content: newTaskText,
+                      };
+
       setTasks([...tasks, newTask]);
       setTasksCount( (state) => {return state + 1});
       setNewTaskText('');
   }
-  function onDeleteTask (taskToDelete: string){
+
+  function onDeleteTask (TaskId: string){
     const tasksWhithoutDeletedOne = tasks.filter( (task) => {
-        return task !== taskToDelete;
+        return task.id !== TaskId;
     })
     setTasks(tasksWhithoutDeletedOne);
+    setTasksCount( (state) => {return state - 1});
+  }
+  function onCheckTask(taskToCheckId:string){
+    const updateTask = tasks.filter( (task) =>{
+      if ( task.id === taskToCheckId ){
+          task.isChecked = true;
+      }
+      return task
+    })
+    setTasks(updateTask);
+   
   }
 
   return (
@@ -60,7 +87,7 @@ function App() {
     
                   <TaskInfos>
                     <strong>Concuídas</strong>
-                    <span>{finishedTasks}</span>
+                    <span>{finishedTasks} de {tasksCount}</span>
                   </TaskInfos>
               </div>
 
@@ -77,8 +104,9 @@ function App() {
                       tasks.map ((task)=> {
                         return  <Task
                                     key={nextId()}
-                                    content={task}
-                                    onDelete={ () => onDeleteTask(task)}
+                                    data={task}
+                                    onDelete={ () => onDeleteTask(task.id)}
+                                    onCheck= {() => onCheckTask(task.id)}
                                 />
                       })
                     }
