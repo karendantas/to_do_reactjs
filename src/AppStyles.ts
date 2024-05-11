@@ -19,6 +19,7 @@ export const Header = styled.header`
 `
 export const TaskInputContainer = styled.div`
     width: 100%;
+   
     height: 3.375rem;
 
     display: flex;
@@ -90,6 +91,8 @@ export const TaskInfos =  styled.div`
 
 export const TasksList = styled.div`
         margin-top: 1.5rem;
+        padding-top: 1.5rem;
+
         border-top: 2px solid var(--gray-400);
         display: flex;
         flex-direction: column;

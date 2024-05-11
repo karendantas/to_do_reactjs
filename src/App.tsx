@@ -2,8 +2,30 @@ import { Header, Container,TaskInputContainer,Input,Button, TaskContainer,TaskIn
 import { PlusCircle } from '@phosphor-icons/react';
 
 import { Task } from './components/Task/Task';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 function App() {
+  const [tasks, setTasks] = useState(['OI', 'ias']);
+  const [tasksCount, setTasksCount] = useState(2);
+  const [finishedTasks, setFinishedTasks] = useState(0);
+  const [newTaskText, setNewTaskText] =  useState('');
+
+  const isListTaskEmpty = tasks.length === 0;
+
+
+  function handleGetNewTaskText(event: ChangeEvent<HTMLInputElement>){
+    setNewTaskText(event.target.value);
+  }
+  function handleAddNewTask( event:FormEvent ){
+      event.preventDefault();
+
+      const newTask = newTaskText;
+      setTasks([...tasks, newTask]);
+      setNewTaskText('');
+    
+  }
+
+
   return (
     <>
       <Header>
@@ -11,33 +33,50 @@ function App() {
       </Header>
 
       <Container>
-          <TaskInputContainer>
-                <Input type="text" placeholder='Adicione uma nova tarefa' />
+          <form onSubmit={handleAddNewTask}> 
+            <TaskInputContainer>
+                <Input type="text" 
+                      placeholder='Adicione uma nova tarefa' 
+                      onChange={handleGetNewTaskText}  
+                      value = {newTaskText}    
+                />
                 <Button>Criar <PlusCircle size={20}/> </Button>
-          </TaskInputContainer>
+            </TaskInputContainer>
+          </form>
 
           <TaskContainer>
               <div>
                   <TaskInfos>
                     <strong >Tarefas criadas</strong>
-                    <span>0</span>
+                    <span>{tasksCount}</span>
                   </TaskInfos>
 
     
                   <TaskInfos>
                     <strong>Concuídas</strong>
-                    <span>0</span>
+                    <span>{finishedTasks}</span>
                   </TaskInfos>
               </div>
 
               <TasksList>
-                    <EmptyContent>
-                        <img src="src/assets/images/Clipboard.png" alt="Uma imagem de uma prancheta" />
-                        <strong>Você ainda não tem tarefas cadastradas</strong>
-                        <span>Crie tarefas e organize seus itens a fazer</span>
-                    </EmptyContent>
+                
 
-                      <Task/>
+                    {
+                      isListTaskEmpty 
+                      ?
+                          <EmptyContent>
+                            <img src="src/assets/images/Clipboard.png" alt="Uma imagem de uma prancheta" />
+                            <strong>Você ainda não tem tarefas cadastradas</strong>
+                            <span>Crie tarefas e organize seus itens a fazer</span>
+                          </EmptyContent>
+                      :
+                      tasks.map ((task)=> {
+                        return  <Task
+                                    content={task}
+                                />
+                      })
+                    }
+                     
 
               </TasksList>
 

@@ -8,6 +8,8 @@ export const Container = styled.div`
     border-radius: 8px;
     border: 1px solid var(--gray-400);
 
+    margin-bottom: 0.75rem;
+
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
